@@ -73,9 +73,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Obtener token de inscripción para Kibana
-sudo /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana | sudo tee /etc/elasticsearch/token_kibana.txt >/dev/null
-
 # Verificar obtención del token (Kibana)
 if [ $? -ne 0 ]; then
     echo "Error: No se pudo obtener el token de inscripción para Kibana."
