@@ -1,0 +1,11 @@
+# Filebeat configuration
+filebeat.inputs:
+- type: filestream
+  paths:
+    - /var/log/*/*.log
+    - /var/log/*.log
+
+output.redis:
+  hosts: ["localhost:6379"]
+  password: "Jimena6721"
+  key: "filebeat"
