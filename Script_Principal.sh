@@ -12,7 +12,8 @@ menu ()
       echo -e
       echo "1) Instalacción para Nodo central (controlador)"
       echo "2) Instalación para cliente a monitorizar"
-      echo "3) Salir"
+      echo "3) Puesta en marcha del controlador"
+      echo "4) Salir"
       echo -e
       #Lee opción elegida
       read -p "Elige una opción: " opcion
@@ -21,7 +22,8 @@ menu ()
       case $opcion in
          1) confirmacion "1";;
          2) confirmacion "2";;
-         3) controlador=1;;
+         3) inicializacion;;
+         4) controlador=1;;
          *) echo "Opción no válida"
       esac
    done
@@ -39,7 +41,7 @@ confirmacion ()
         case $confirmacioncompleta in
             s) completa;;
             S) completa;;
-            *) exit 1;;
+            *) menu;;
         esac
     else
         #Solicita confirmación de instalación cliente
@@ -49,7 +51,7 @@ confirmacion ()
         case $confirmacioncliente in
             s) cliente;;
             S) cliente;;
-            *) exit 1;;
+            *) menu;;
         esac
     fi
 }
@@ -82,6 +84,24 @@ cliente ()
     sudo bash ./Script_Beats.sh
     # Habilitar servicios
     sudo bash ./Script_Habilitar.sh 2
+}
+
+# Función inicialización controlador
+inicializacion ()
+{
+    # Reinidio de los servicios
+    sudo systemstl restart filebeat.service
+    sudo systemstl restart metricbeat.service
+    sudo systemstl restart packetbeat.service
+    sudo systemstl restart redis.service
+    sudo systemstl restart redis-server.service
+    sudo systemstl restart logstash.service
+    sudo systemstl restart elasticsearch.service
+    sudo systemstl restart kibana.service
+
+    # Obtener token de inscripción para Kibana
+    sudo /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana | sudo tee /etc/elasticsearch/token_kibana.txt >/dev/null
+
 }
 
 # ------------------------------  COMIENZO EJECUCIÓN  ------------------------------
