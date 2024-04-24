@@ -90,14 +90,14 @@ cliente ()
 inicializacion ()
 {
     # Reinidio de los servicios
-    sudo systemstl restart filebeat.service
-    sudo systemstl restart metricbeat.service
-    sudo systemstl restart packetbeat.service
-    sudo systemstl restart redis.service
-    sudo systemstl restart redis-server.service
-    sudo systemstl restart logstash.service
-    sudo systemstl restart elasticsearch.service
-    sudo systemstl restart kibana.service
+    sudo systemctl restart filebeat.service
+    sudo systemctl restart metricbeat.service
+    sudo systemctl restart packetbeat.service
+    sudo systemctl restart redis.service
+    sudo systemctl restart redis-server.service
+    sudo systemctl restart logstash.service
+    sudo systemctl restart elasticsearch.service
+    sudo systemctl restart kibana.service
 
     # Obtener token de inscripción para Kibana
     sudo /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana | sudo tee /etc/elasticsearch/token_kibana.txt >/dev/null
