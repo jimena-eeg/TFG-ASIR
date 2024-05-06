@@ -1,0 +1,7 @@
+# Logstash configuration
+http.host: "0.0.0.0"
+
+path.data: /var/lib/logstash
+path.logs: /var/log/logstash
+
+api.http.port: 9600-9700
