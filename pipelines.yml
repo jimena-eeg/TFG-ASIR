@@ -1,3 +1,0 @@
-# Pipelines configuration
-- pipeline.id: datos_recopilados
-  path.config: "/etc/logstash/conf.d/*.conf"
