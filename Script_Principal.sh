@@ -93,7 +93,7 @@ cliente ()
     done
 
     # Instalaciones previas
-    sudo bash ./Script_Instalaciones_previas.sh
+    sudo bash ./Script_Instalaciones_Previas.sh
     # Instalación Beats
     sudo bash ./Script_Beats.sh $ip
     # Habilitar servicios
